@@ -5,16 +5,67 @@ public class Pokemon {
 	private String type;
 	private int CurrentHP;
 	final private int HPMAX;
-	private int lvl;
 	private int ID;
 	protected Ataque ataque1 = new Ataque();
 	protected Ataque ataque2 = new Ataque();
 	protected Ataque ataque3 = new Ataque();
 	protected Ataque ataque4 = new Ataque();
 	private boolean defeated; 
-	
 	public static int npokemons = 0;
-		
+	
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getCurrentHP() {
+		return CurrentHP;
+	}
+
+	public void setCurrentHP(int currentHP) {
+		CurrentHP = currentHP;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public boolean isDefeated() {
+		return defeated;
+	}
+
+	public void setDefeated(boolean defeated) {
+		this.defeated = defeated;
+	}
+
+	public static int getNpokemons() {
+		return npokemons;
+	}
+
+	public static void setNpokemons(int npokemons) {
+		Pokemon.npokemons = npokemons;
+	}
+
+	public int getHPMAX() {
+		return HPMAX;
+	}
+
 	public Pokemon(String name, int n, int id, String Atk1, String Atk2, String Atk3, String Atk4) {
 		this.nome = name;
 		this.ID=id;
