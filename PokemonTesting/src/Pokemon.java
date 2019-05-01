@@ -26,6 +26,18 @@ public class Pokemon {
 		this.defeated = false;
 				
 	}
+	
+	public int Decreasedmg(int dmg) {
+		CurrentHP -= dmg;
+		if(CurrentHP < 0) CurrentHP = 0;
+		return CurrentHP;
+	}
+	
+	public int Heal(int val) {
+		CurrentHP += val;
+		if(CurrentHP > HPMAX) CurrentHP = HPMAX; 
+		return CurrentHP;
+	}
 		
 }
 
