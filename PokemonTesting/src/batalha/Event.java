@@ -1,3 +1,4 @@
+package batalha;
 
 abstract public class Event {
 	private long evtTime;
