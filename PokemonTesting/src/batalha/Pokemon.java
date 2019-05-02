@@ -12,7 +12,7 @@ public class Pokemon {
 	protected Ataque ataque4 = new Ataque(false);
 	private boolean defeated; 
 	private boolean highestpriority=false; // se true significa que tem maior speed, maior iniciativa
-	
+	private static int npokemons;
 	
 	public String getNome() {
 		return nome;
@@ -108,7 +108,7 @@ public class Pokemon {
 		this.ID=id;
 		this.CurrentHP = n;
 		this.HPMAX =n;
-		this.ataque1.setName(Atk1); 
+		this.ataque1.setNome(Atk1); 
 		this.ataque2.setNome(Atk2);
 		this.ataque3.setNome(Atk3);
 		this.ataque4.setNome(Atk4);
