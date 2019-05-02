@@ -28,29 +28,30 @@ public class BattleControls extends Controller  {
 	private Treinador Ash = new Treinador("Ash", teamRed, itemBag);
 	private Treinador Ethan = new Treinador("Ethan", teamBlue, itemBag );
 	
-	private class TrocarPokemon extends Event {
-		Treinador P1;
-		Treinador P2;
+	private class TrocarPokemon extends Event { // Classe de troca de Pokemons
+		Treinador T1;
+		Treinador T2;
 		boolean nextPokemon;
-		public TrocarPokemon (long eventTime, Treinador P1, Treinador P2) {
+		public TrocarPokemon (long eventTime, Treinador t1, Treinador t2) {
 			super(eventTime);
-			this.P1 = P1;
-			this.P2 = P2;
+			this.T1 = t1;
+			this.T2 = t2;
 		}
 		public void action() {
-			nextPokemon = P1.nextPA();
+			nextPokemon = T1.nextAP();
 		}
+		
 		public String description() {
 			if(!nextPokemon){
-				return P2.getName() + " defeated " + P1.getName() + "!\n" + P2.getName() + " got $2000 for winning!";
+				return T2.getName() + " DEFEATED " + T1.getName() + "!\n" + T2.getName() + " WON";
 			}
 			else{
-				return P1.getName() + " sent out " + P1.getTeamMember(P1.getAP()).getName() + "!\n";
+				return T1.getName() + " SENT AWAY " + T1.getTeamMember(T1.getAP()).getNome() + "!\n";
 			}
 		}
 	}
 	
-	private class PokeAtack extends Event {
+	private class PokeAtack extends Event { // Classe de Luta
 		Treinador at;
 		Treinador def;
 		int i;
@@ -62,10 +63,10 @@ public class BattleControls extends Controller  {
 			i = move;
 		}
 		public void action() {
-			
+	
 		}
 	
-	
+	}
 	
 	
 	public static void main(String[] args) throws InterruptedException {

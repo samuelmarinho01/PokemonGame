@@ -8,10 +8,10 @@ private String name;
 private int damage;
 private boolean priority;//somente alguns movimentos possuem prioridade sobre o outro. ex: QuickAttack
 
-public Ataque(String n, int d, boolean p) {
-	name = n;
-	damage = d;
-	priority = p;
+
+
+public Ataque(boolean p) {
+	this.priority= p;
 }
 
 public double DamageCalculate(int att, int def, double typeAdv) {
@@ -27,4 +27,26 @@ public boolean getPri() {
 public String getMove() {
 	return name;
 }
+
+
+
+public void setName(String atck) {
+	this.name= atck;
+	
+}
+
+public void setDamage(int i) {
+	this.damage = i;
+}
+
+public void setDamage1(int i) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
 }
