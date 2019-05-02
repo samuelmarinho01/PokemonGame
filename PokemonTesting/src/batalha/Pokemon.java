@@ -113,6 +113,7 @@ public class Pokemon {
 		this.ataque3.setNome(Atk3);
 		this.ataque4.setNome(Atk4);
 		this.defeated = false;
+		
 				
 	}
 	

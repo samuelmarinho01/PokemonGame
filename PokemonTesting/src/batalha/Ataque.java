@@ -4,7 +4,7 @@ package batalha;
 import java.util.Random;
 
 public class Ataque {
-private String name;
+private String nome;
 private int damage;
 private boolean priority;//somente alguns movimentos possuem prioridade sobre o outro. ex: QuickAttack
 
@@ -25,13 +25,13 @@ public boolean getPri() {
 }
 
 public String getMove() {
-	return name;
+	return nome;
 }
 
 
 
-public void setName(String atck) {
-	this.name= atck;
+public void setNome(String atck) {
+	this.nome= atck;
 	
 }
 
