@@ -68,6 +68,43 @@ public class BattleControls extends Controller  {
 	
 	}
 	
+	private class HealPokemon extends Event { // Classe de Luta
+		Pokemon poke;
+		Potion cure;
+
+		public HealPokemon(long eventTime, Pokemon poke, Potion cure) {
+			super(eventTime);
+			this.poke=poke;
+			this.cure=cure;
+		}
+		public void action() {
+			cure.HealHP(cure, poke);
+		}
+	
+		public String description() {
+			return poke.getNome() + "was healed";
+		}
+	}
+	
+	private class RunAway extends Event { // Classe de troca de Pokemons
+		Treinador T1;
+		Treinador T2;
+		boolean nextPokemon;
+		public RunAway (long eventTime, Treinador t1, Treinador t2) {
+			super(eventTime);
+			this.T1 = t1;
+			this.T2 = t2;
+		}
+		public void action() {
+			T1.setDefeated(true);
+			T1.setFighting(false);
+		}
+		
+		public String description() {
+			return T1.getName() + " RUN AWAY! " + "!\n" + T2.getName() + " WON!";
+		}
+	}
+
 	
 	public static void main(String[] args) throws InterruptedException {
 		BattleControls bc = new BattleControls();	
