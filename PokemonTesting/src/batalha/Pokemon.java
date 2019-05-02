@@ -6,12 +6,12 @@ public class Pokemon {
 	private int CurrentHP;
 	final private int HPMAX;
 	private int ID;
-	protected Ataque ataque1 = new Ataque();
-	protected Ataque ataque2 = new Ataque();
-	protected Ataque ataque3 = new Ataque();
-	protected Ataque ataque4 = new Ataque();
+	protected Ataque ataque1 = new Ataque(false);
+	protected Ataque ataque2 = new Ataque(false);
+	protected Ataque ataque3 = new Ataque(false);
+	protected Ataque ataque4 = new Ataque(false);
 	private boolean defeated; 
-	public static int npokemons = 0;
+	private boolean highestpriority=false; // se true significa que tem maior speed, maior iniciativa
 	
 	
 	public String getNome() {
@@ -50,6 +50,14 @@ public class Pokemon {
 		return defeated;
 	}
 
+	public boolean isHighestpriority() {
+		return highestpriority;
+	}
+
+	public void setHighestpriority(boolean highestpriority) {
+		this.highestpriority = highestpriority;
+	}
+
 	public void setDefeated(boolean defeated) {
 		this.defeated = defeated;
 	}
@@ -58,9 +66,38 @@ public class Pokemon {
 		return npokemons;
 	}
 
-	public static void setNpokemons(int npokemons) {
-		Pokemon.npokemons = npokemons;
+	public Ataque getAtaque1() {
+		return ataque1;
 	}
+
+	public void setAtaque1(Ataque ataque1) {
+		this.ataque1 = ataque1;
+	}
+
+	public Ataque getAtaque2() {
+		return ataque2;
+	}
+
+	public void setAtaque2(Ataque ataque2) {
+		this.ataque2 = ataque2;
+	}
+
+	public Ataque getAtaque3() {
+		return ataque3;
+	}
+
+	public void setAtaque3(Ataque ataque3) {
+		this.ataque3 = ataque3;
+	}
+
+	public Ataque getAtaque4() {
+		return ataque4;
+	}
+
+	public void setAtaque4(Ataque ataque4) {
+		this.ataque4 = ataque4;
+	}
+
 
 	public int getHPMAX() {
 		return HPMAX;
@@ -71,7 +108,7 @@ public class Pokemon {
 		this.ID=id;
 		this.CurrentHP = n;
 		this.HPMAX =n;
-		this.ataque1.setNome(Atk1); 
+		this.ataque1.setName(Atk1); 
 		this.ataque2.setNome(Atk2);
 		this.ataque3.setNome(Atk3);
 		this.ataque4.setNome(Atk4);
@@ -214,4 +251,5 @@ class Primeape extends Pokemon {
 		ataque3.setDamage(110);
 		ataque4.setDamage(200);
 	}	
+	
 }
