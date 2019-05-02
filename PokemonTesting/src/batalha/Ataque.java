@@ -39,10 +39,7 @@ public void setDamage(int i) {
 	this.damage = i;
 }
 
-public void setDamage1(int i) {
-	// TODO Auto-generated method stub
-	
-}
+
 
 
 

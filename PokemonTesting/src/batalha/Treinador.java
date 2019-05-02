@@ -108,6 +108,17 @@ public class Treinador {
 		this.turnocompleto = turnocompleto;
 	}
 	
+	public boolean nextAP() {
+		for(int i = 0; i < 6; i++) {
+			if(!time[i].isDefeated() && i != AP){
+				AP = i;
+				return true;
+			}
+		}
+		defeated = true;
+		return false;
+	}
+	
 	
 	
 	
