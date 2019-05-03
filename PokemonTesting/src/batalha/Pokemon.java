@@ -13,6 +13,7 @@ public class Pokemon {
 	private boolean defeated; 
 	private boolean highestpriority=false; // se true significa que tem maior speed, maior iniciativa
 	private static int npokemons;
+	public Ataque[] moves = new Ataque[5] ;
 	
 	public String getNome() {
 		return nome;
@@ -113,15 +114,21 @@ public class Pokemon {
 		this.ataque3.setNome(Atk3);
 		this.ataque4.setNome(Atk4);
 		this.defeated = false;
-		
+		this.moves[0].setNome(Atk1);
+		this.moves[1].setNome(Atk2);
+		this.moves[2].setNome(Atk3);
+		this.moves[3].setNome(Atk4);
 				
 	}
 	
 	public int Decreasedmg(int dmg) {
 		CurrentHP -= dmg;
-		if(CurrentHP < 0) CurrentHP = 0;
+		if(CurrentHP <= 0) { 
+			CurrentHP = 0;
+			this.defeated=true;
+		}
 		return CurrentHP;
-	}
+		}
 	
 	public int Heal(int val) {
 		CurrentHP += val;

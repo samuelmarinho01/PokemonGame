@@ -1,5 +1,7 @@
 package batalha;
 
+import java.util.Random;
+
 
 public class BattleControls extends Controller  {
 	private Pokemon Chari = new Charizard();
@@ -28,27 +30,28 @@ public class BattleControls extends Controller  {
 	private Treinador Ash = new Treinador("Ash", teamRed, itemBag);
 	private Treinador Ethan = new Treinador("Ethan", teamBlue, itemBag );
 	
+	private static boolean battle=true;
+	
 	private class TrocarPokemon extends Event { // Classe de troca de Pokemons
 		Treinador T1;
 		Treinador T2;
-		boolean nextPokemon;
-		public TrocarPokemon (long eventTime, Treinador t1, Treinador t2) {
+		int nextPokemon;
+		public TrocarPokemon (long eventTime, Treinador t1) {
 			super(eventTime);
 			this.T1 = t1;
-			this.T2 = t2;
+			
 		}
 		public void action() {
 			nextPokemon = T1.nextAP();
 		}
 		
-		public String description() {
-			if(!nextPokemon){
-				return T2.getName() + " DEFEATED " + T1.getName() + "!\n" + T2.getName() + " WON";
-			}
-			else{
-				return T1.getName() + " SENT AWAY " + T1.getTeamMember(T1.getAP()).getNome() + "!\n";
-			}
+		public String description() { // a verificar
+			if(nextPokemon>=0){
+				return "";
+		
 		}
+			return null;
+	}
 	}
 	
 	private class PokeAtack extends Event { // Classe de Luta
@@ -56,17 +59,39 @@ public class BattleControls extends Controller  {
 		Treinador def;
 		int i;
 		int damage;
-		public PokeAtack(long eventTime, Treinador P1, Treinador P2, int move) {
+		Random gerador = new Random();
+		int atk = gerador.nextInt(4);
+	
+				
+		public PokeAtack(long eventTime, Treinador P1, Treinador P2) {
 			super(eventTime);
 			at = P1;
 			def = P2;
-			i = move;
+			
 		}
 		public void action() {
-	
+			int standarddeffence=30;
+			// pegar o ataque do pokemon atual do Treinador atacante
+			// diminur o HP do Pokemon atual do Treinador defensor
+			double typeAdv=0.5;
+			int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, typeAdv);
+			def.getTeamMember(def.getAP()).Decreasedmg(d);
+			if(def.getTeamMember(def.getAP()).isDefeated()) {
+				def.setN_alivePokemon(def.getN_alivePokemon()-1);
+			}
+			
+		
+						
+			
 		}
-	
+		public String description() {
+			
+			return at.getTeamMember(at.getAP()).getNome()+ " usou " + at.getTeamMember(at.getAP()).moves[atk].getMove()+" !\n"+
+					def.getTeamMember(def.getAP()).getNome() + "tem HP "+ def.getTeamMember(def.getAP()).getCurrentHP();
+		}
 	}
+	
+	
 	
 	private class HealPokemon extends Event { // Classe de Luta
 		Pokemon poke;
@@ -105,7 +130,81 @@ public class BattleControls extends Controller  {
 		}
 	}
 
+	public class NovaRodada {
+		
 	
+		private Treinador Atacante;
+		private Treinador Defensor;
+		 
+		public NovaRodada(Treinador T1, Treinador T2) {
+			Atacante = T1;
+			Defensor = T2;
+		}
+		
+		public void action (Treinador at,Treinador def) {
+			
+			
+		}
+		public String description() {
+			return "" ;
+		}
+	}
+
+		public class FimRodada {
+			
+		
+			private Treinador at;
+			private Treinador def;
+			 
+			public FimRodada(Treinador T1, Treinador T2) {
+				at = T1;
+				def = T2;
+			}
+			
+			public void action (Treinador at,Treinador def) {
+				if(def.getN_alivePokemon()!=0) {
+					if(def.getTeamMember(def.getAP()).isDefeated()) {
+						def.setAP(def.nextAP());
+					}
+					else {
+						battle=false;
+					}
+				}
+			}
+			public void SwitchTrainer() {
+				if(battle) {
+					Treinador aux = at;
+					at = def;
+					def = aux;
+				}
+				
+			}
+				
+				
+			
+			public String descricao() {
+				if (!battle) {
+					return at.getName()+" DEFEATED ! "+def.getName()+"\n"+ at.getName()+"WON!";
+				}
+				return "" ;
+			}
+		}
+		
+	/*	
+		
+		private BattleIsGoing bic = new BattleIsGoing(Atacante, Defensor);
+		
+		public void SwitchTrainer() {
+			if(battle) {
+				Treinador aux = Atacante;
+				Atacante = Defensor;
+				Defensor = aux;
+			}
+			
+		}
+		*/
+	
+		
 	public static void main(String[] args) throws InterruptedException {
 		BattleControls bc = new BattleControls();	
 		
@@ -114,4 +213,5 @@ public class BattleControls extends Controller  {
 		
 }
 
+	
 }

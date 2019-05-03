@@ -9,7 +9,7 @@ public class Treinador {
 	private boolean defeated = false;
 	private int n_alivePokemon;
 	private boolean fighting;
-	private boolean turnocompleto;
+
 	private int AP; // active pokemon
 	
 
@@ -26,7 +26,7 @@ public class Treinador {
 	public Pokemon getTeamMember(int i){
 		return time[i];
 	}
-
+	
 	
 	public int getAP() {
 		return AP;
@@ -100,26 +100,18 @@ public class Treinador {
 		this.fighting = fighting;
 	}
 
-	public boolean isTurnocompleto() {
-		return turnocompleto;
-	}
 
-	public void setTurnocompleto(boolean turnocompleto) {
-		this.turnocompleto = turnocompleto;
-	}
+
 	
-	public boolean nextAP() {
+	public int nextAP() {
 		for(int i = 0; i < 6; i++) {
 			if(!time[i].isDefeated() && i != AP){
 				AP = i;
-				return true;
+			return AP;
+			
 			}
 		}
-		defeated = true;
-		return false;
+		return -3;
 	}
-	
-	
-	
-	
 }
+

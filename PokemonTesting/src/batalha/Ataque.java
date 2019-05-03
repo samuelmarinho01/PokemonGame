@@ -30,6 +30,10 @@ public String getMove() {
 
 
 
+public int getDamage() {
+	return damage;
+}
+
 public void setNome(String atck) {
 	this.nome= atck;
 	
