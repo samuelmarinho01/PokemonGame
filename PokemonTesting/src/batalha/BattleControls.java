@@ -54,6 +54,22 @@ public class BattleControls extends Controller  {
 	}
 	}
 	
+	private double TypeAdv(String atac, String def) {
+		if(atac == "Fogo" && def == "Grama" || atac == "Fogo" && def == "Inseto") return 2.0;
+		else if(atac == "Fogo" && def == "Agua") return 0.5;
+		else if(atac == "Grama" && def == "Agua") return 2.0;
+		else if(atac == "Grama" && def == "Inseto") return 0.5;
+		else if(atac == "Inseto" && def == "Grama" || atac == "Inseto" && def == "Lutador") return 2.0;
+		else if(atac == "Inseto" && def == "Fogo") return 0.5;
+		else if(atac == "Agua" && def == "Fogo") return 2.0;
+		else if(atac == "Agua" && def == "Grama") return 0.5;
+		else if(atac == "Eletrico" && def == "Agua") return 2.0;
+		else if(atac == "Eletrico" && def == "Grama") return 0.5;
+		else if(atac == "Lutador" && def == "Inseto") return 0.5;
+		else return 1;
+		
+	}
+	
 	private class PokeAtack extends Event { // Classe de Luta
 		Treinador at;
 		Treinador def;
@@ -69,12 +85,13 @@ public class BattleControls extends Controller  {
 			def = P2;
 			
 		}
+		
 		public void action() {
 			int standarddeffence=30;
 			// pegar o ataque do pokemon atual do Treinador atacante
 			// diminur o HP do Pokemon atual do Treinador defensor
-			double typeAdv=0.5;
-			int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, typeAdv);
+			// double typeAdv=0.5;
+			int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, TypeAdv(at.getTeamMember(at.getAP()).getType(), def.getTeamMember(def.getAP()).getType()));
 			def.getTeamMember(def.getAP()).Decreasedmg(d);
 			if(def.getTeamMember(def.getAP()).isDefeated()) {
 				def.setN_alivePokemon(def.getN_alivePokemon()-1);
