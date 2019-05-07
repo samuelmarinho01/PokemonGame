@@ -129,7 +129,42 @@ public class BattleControls extends Controller  {
 			return T1.getName() + " RUN AWAY! " + "!\n" + T2.getName() + " WON!";
 		}
 	}
+	class NovaRodada extends Event {
+		public NovaRodada(long eventTime) {
+			super(eventTime);
+			// TODO Auto-generated constructor stub
+		}
 
+
+
+		public void action() {
+			long tm = System.currentTimeMillis();
+			
+			
+				double n = Math.random();
+				if (n < 0.90){
+					
+						addEvent(new PokeAtack(tm,t1,t2);
+				}
+				else if (n < 0.95)
+					addEvent(new TrocarPokemon();
+				else if (n < 0.98)
+					addEvent(new HealPokemon();	
+				else
+					addEvent(new RunAway();
+			
+			
+
+		}
+
+		public String description() {
+		
+			return "";
+		}
+	}
+	
+	
+/*
 	public class NovaRodada {
 		
 	
@@ -189,7 +224,7 @@ public class BattleControls extends Controller  {
 				return "" ;
 			}
 		}
-		
+		*/
 	/*	
 		
 		private BattleIsGoing bic = new BattleIsGoing(Atacante, Defensor);
@@ -206,7 +241,14 @@ public class BattleControls extends Controller  {
 	
 		
 	public static void main(String[] args) throws InterruptedException {
-		BattleControls bc = new BattleControls();	
+		BattleControls bc = new BattleControls();
+		long tm = System.currentTimeMillis();
+		while (bc.battle == true) {
+			bc.addEvent(bc.new NovaRodada(tm));
+			bc.addEvent(bc.new FimRodada(tm));
+			bc.run();
+		}
+		
 		
 		
 		
