@@ -27,14 +27,18 @@ public class BattleControls extends Controller  {
 	
 	private Item[] itemBag= {spotion,cpotion,mcpotion};
 	
-	private Treinador Ash = new Treinador("Ash", teamRed, itemBag);
-	private Treinador Ethan = new Treinador("Ethan", teamBlue, itemBag );
+	private Treinador Ash = new Treinador("Ash", teamRed, itemBag,3);
+	private Treinador Ethan = new Treinador("Ethan", teamBlue, itemBag,3 );
+		
+	private Treinador ofens = Ash;
+	private Treinador defens = Ethan;
+	
 	
 	private static boolean battle=true;
 	
 	private class TrocarPokemon extends Event { // Classe de troca de Pokemons
 		Treinador T1;
-		Treinador T2;
+		
 		int nextPokemon;
 		public TrocarPokemon (long eventTime, Treinador t1) {
 			super(eventTime);
@@ -73,8 +77,7 @@ public class BattleControls extends Controller  {
 	private class PokeAtack extends Event { // Classe de Luta
 		Treinador at;
 		Treinador def;
-		int i;
-		int damage;
+
 		Random gerador = new Random();
 		int atk = gerador.nextInt(4);
 	
@@ -114,10 +117,10 @@ public class BattleControls extends Controller  {
 		Pokemon poke;
 		Potion cure;
 
-		public HealPokemon(long eventTime, Pokemon poke, Potion cure) {
+		public HealPokemon(long eventTime, Pokemon poke, Item cure) {
 			super(eventTime);
 			this.poke=poke;
-			this.cure=cure;
+			this.cure=(Potion) cure;
 		}
 		public void action() {
 			cure.HealHP(cure, poke);
@@ -131,7 +134,7 @@ public class BattleControls extends Controller  {
 	private class RunAway extends Event { // Classe de troca de Pokemons
 		Treinador T1;
 		Treinador T2;
-		boolean nextPokemon;
+
 		public RunAway (long eventTime, Treinador t1, Treinador t2) {
 			super(eventTime);
 			this.T1 = t1;
@@ -161,16 +164,29 @@ public class BattleControls extends Controller  {
 				double n = Math.random();
 				if (n < 0.90){
 					
-						addEvent(new PokeAtack(tm,t1,t2);
+					addEvent(new PokeAtack(tm+4000,ofens, defens));
 				}
 				else if (n < 0.95)
-					addEvent(new TrocarPokemon();
-				else if (n < 0.98)
-					addEvent(new HealPokemon();	
+					addEvent(new TrocarPokemon(tm+4000,ofens));
+				else if (n < 0.98) {
+					if(ofens.getNintens()!=0)				
+					addEvent(new HealPokemon(tm+4000,ofens.getTeamMember(ofens.getAP()),ofens.getItem(3- ofens.getNintens())));
+				}
 				else
-					addEvent(new RunAway();
+					addEvent(new RunAway(tm+4000,ofens, defens));
 			
-			
+				if(defens.getN_alivePokemon()!=0) {
+					if(defens.getTeamMember(defens.getAP()).isDefeated()) {
+						defens.setAP(defens.nextAP());
+					}
+				}
+					else 
+						battle=false;
+				if(battle) {
+					Treinador aux = ofens;
+					ofens = defens;
+					defens = aux;
+				}
 
 		}
 
@@ -179,7 +195,48 @@ public class BattleControls extends Controller  {
 			return "";
 		}
 	}
-	
+	/*
+	private class FimRodada extends Event {
+
+
+		long eventTime;
+
+		public FimRodada(long eventTime) {
+			super(eventTime);
+			this.eventTime = eventTime;
+			
+		}
+
+		public void action (Treinador at,Treinador def) {
+			if(def.getN_alivePokemon()!=0) {
+				if(def.getTeamMember(def.getAP()).isDefeated()) {
+					def.setAP(def.nextAP());
+				}
+			}
+				else 
+					battle=false;
+			if(battle) {
+				Treinador aux = at;
+				at = def;
+				def = aux;
+			}
+				
+			
+		}
+
+		public String description() {
+			return "";
+		}
+
+		@Override
+		public void action() {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+	}
+	*/
 	
 /*
 	public class NovaRodada {
@@ -260,9 +317,8 @@ public class BattleControls extends Controller  {
 	public static void main(String[] args) throws InterruptedException {
 		BattleControls bc = new BattleControls();
 		long tm = System.currentTimeMillis();
-		while (bc.battle == true) {
+		while (BattleControls.battle == true) {
 			bc.addEvent(bc.new NovaRodada(tm));
-			bc.addEvent(bc.new FimRodada(tm));
 			bc.run();
 		}
 		

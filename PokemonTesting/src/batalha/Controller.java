@@ -6,7 +6,6 @@ class EventSet {
 	private Event[] events = new Event[100];
 	private int index = 0;
 	private int next = 0;
-	private int TopPriority;
 	public void add(Event e) {
 		if(index >= events.length)
 			return; // (In real life, throw exception)

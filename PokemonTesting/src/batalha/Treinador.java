@@ -13,13 +13,14 @@ public class Treinador {
 	private int AP; // active pokemon
 	
 
-	public Treinador (String nome, Pokemon[] p, Item[]it ) {
+	public Treinador (String nome, Pokemon[] p, Item[]it, int numItem ) {
 		this.name=nome;
 		for(int i=0;i !=p.length;i++)
 			this.time[i]=p[i];
 		for(int i=0; i!= it.length;i++)
 			this.itempack[i]=it[i];
 		this.n_alivePokemon=6;
+		this.nintens=numItem;
 		
 	}
 	
@@ -70,6 +71,10 @@ public class Treinador {
 
 	public Item[] getItempack() {
 		return itempack;
+	}
+	
+	public Item getItem(int i) {
+		return itempack[i];
 	}
 
 	public void setItempack(Item[] itempack) {

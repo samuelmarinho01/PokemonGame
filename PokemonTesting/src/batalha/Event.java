@@ -2,12 +2,12 @@ package batalha;
 
 abstract public class Event {
 	private long evtTime;
-	private double priority;
+	/*private double priority;
 	
 	public void setPriority(double priority) {
 		this.priority = priority;
 	}
-	
+	*/
 	public Event(long eventTime) {
 		evtTime = eventTime;
 	}
