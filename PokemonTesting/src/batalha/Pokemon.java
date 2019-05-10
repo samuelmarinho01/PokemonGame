@@ -6,10 +6,10 @@ public class Pokemon {
 	private int CurrentHP;
 	final private int HPMAX;
 	private int ID;
-	protected Ataque ataque1 = new Ataque(false);
-	protected Ataque ataque2 = new Ataque(false);
-	protected Ataque ataque3 = new Ataque(false);
-	protected Ataque ataque4 = new Ataque(false);
+	protected Ataque ataque1 = new Ataque();
+	protected Ataque ataque2 = new Ataque();
+	protected Ataque ataque3 = new Ataque();
+	protected Ataque ataque4 = new Ataque();
 	private boolean defeated; 
 	private boolean highestpriority=false; // se true significa que tem maior speed, maior iniciativa
 	private static int npokemons;
@@ -114,7 +114,9 @@ public class Pokemon {
 		this.ataque3.setNome(Atk3);
 		this.ataque4.setNome(Atk4);
 		this.defeated = false;
+		this.moves[0] = new Ataque();
 		this.moves[0].setNome(Atk1);
+		
 		this.moves[1].setNome(Atk2);
 		this.moves[2].setNome(Atk3);
 		this.moves[3].setNome(Atk4);

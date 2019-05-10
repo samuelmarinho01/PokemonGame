@@ -6,13 +6,11 @@ import java.util.Random;
 public class Ataque {
 private String nome;
 private int damage;
-private boolean priority;//somente alguns movimentos possuem prioridade sobre o outro. ex: QuickAttack
+private boolean priority;
 
 
 
-public Ataque(boolean p) {
-	this.priority= p;
-}
+
 
 public double DamageCalculate(int att, int def, double typeAdv) {
 	Random gerador = new Random(1);
