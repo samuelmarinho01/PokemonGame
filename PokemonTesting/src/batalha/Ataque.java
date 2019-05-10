@@ -15,7 +15,7 @@ private boolean priority;
 public double DamageCalculate(int att, int def, double typeAdv) {
 	Random gerador = new Random(1);
 	int rand = gerador.nextInt(15) + 85;
-	return (((22 * att * damage / def)/50) + 2) * typeAdv * rand/100;
+	return (((22 * att  / def)/50) + 2)* typeAdv  * rand/100;
 }
 
 public boolean getPri() {

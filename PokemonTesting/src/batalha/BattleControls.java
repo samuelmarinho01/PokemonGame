@@ -51,7 +51,7 @@ public class BattleControls extends Controller  {
 		
 		public String description() { // a verificar
 			if(nextPokemon>=0){
-				return "";
+				return ofens.getName() + " trocou seu Pokemon\n"+ofens.getTeamMember(ofens.getAP()).getNome()+" entrou na batalha";
 		
 		}
 			return null;
@@ -59,17 +59,17 @@ public class BattleControls extends Controller  {
 	}
 	
 	private double TypeAdv(String atac, String def) {
-		if(atac == "Fogo" && def == "Grama" || atac == "Fogo" && def == "Inseto") return 2.0;
-		else if(atac == "Fogo" && def == "Agua") return 0.5;
-		else if(atac == "Grama" && def == "Agua") return 2.0;
-		else if(atac == "Grama" && def == "Inseto") return 0.5;
-		else if(atac == "Inseto" && def == "Grama" || atac == "Inseto" && def == "Lutador") return 2.0;
-		else if(atac == "Inseto" && def == "Fogo") return 0.5;
-		else if(atac == "Agua" && def == "Fogo") return 2.0;
-		else if(atac == "Agua" && def == "Grama") return 0.5;
-		else if(atac == "Eletrico" && def == "Agua") return 2.0;
-		else if(atac == "Eletrico" && def == "Grama") return 0.5;
-		else if(atac == "Lutador" && def == "Inseto") return 0.5;
+		if(atac == "Fogo" && def == "Grama" || atac == "Fogo" && def == "Inseto") return 10.0;
+		else if(atac == "Fogo" && def == "Agua") return 1.0;
+		else if(atac == "Grama" && def == "Agua") return 10.0;
+		else if(atac == "Grama" && def == "Inseto") return 1.0;
+		else if(atac == "Inseto" && def == "Grama" || atac == "Inseto" && def == "Lutador") return 10.0;
+		else if(atac == "Inseto" && def == "Fogo") return 1.0;
+		else if(atac == "Agua" && def == "Fogo") return 10.0;
+		else if(atac == "Agua" && def == "Grama") return 1.0;
+		else if(atac == "Eletrico" && def == "Agua") return 10.0;
+		else if(atac == "Eletrico" && def == "Grama") return 1.0;
+		else if(atac == "Lutador" && def == "Inseto") return 1.0;
 		else return 1;
 		
 	}
@@ -90,7 +90,7 @@ public class BattleControls extends Controller  {
 		}
 		
 		public void action() {
-			int standarddeffence=30;
+			int standarddeffence=5;
 			// pegar o ataque do pokemon atual do Treinador atacante
 			// diminur o HP do Pokemon atual do Treinador defensor
 			// double typeAdv=0.5;
@@ -106,8 +106,8 @@ public class BattleControls extends Controller  {
 		}
 		public String description() {
 			
-			return at.getTeamMember(at.getAP()).getNome()+ " usou " + at.getTeamMember(at.getAP()).moves[atk].getMove()+" !\n"+
-					def.getTeamMember(def.getAP()).getNome() + "tem HP "+ def.getTeamMember(def.getAP()).getCurrentHP();
+			return ofens.getName() + "'s " +  at.getTeamMember(at.getAP()).getNome()+ " usou " + at.getTeamMember(at.getAP()).moves[atk].getMove()+" !\n"+
+					def.getTeamMember(def.getAP()).getNome() + " tem HP "+ def.getTeamMember(def.getAP()).getCurrentHP();
 		}
 	}
 	
@@ -127,7 +127,7 @@ public class BattleControls extends Controller  {
 		}
 	
 		public String description() {
-			return poke.getNome() + "was healed";
+			return poke.getNome() + " was healed\n"+poke.getNome()+" HP "+ poke.getCurrentHP();
 		}
 	}
 	
@@ -162,19 +162,22 @@ public class BattleControls extends Controller  {
 			
 			
 				double n = Math.random();
-				if (n < 0.90){
+				if (n < 0.80){
 					
-					addEvent(new PokeAtack(tm+4000,ofens, defens));
+					addEvent(new PokeAtack(tm+1000,ofens, defens));
 				}
-				else if (n < 0.95)
-					addEvent(new TrocarPokemon(tm+4000,ofens));
-				else if (n < 0.98) {
-					if(ofens.getNintens()!=0)				
-					addEvent(new HealPokemon(tm+4000,ofens.getTeamMember(ofens.getAP()),ofens.getItem(3- ofens.getNintens())));
+				else if (n < 0.85)
+					addEvent(new TrocarPokemon(tm+1000,ofens));
+				else if (n < 0.95) {
+					if(ofens.getNintens()!=0)	{			
+					addEvent(new HealPokemon(tm+1000,ofens.getTeamMember(ofens.getAP()),ofens.getItem(3- ofens.getNintens())));
+					ofens.setNintens(ofens.getNintens()-1);
+					}
 				}
-				else
-					addEvent(new RunAway(tm+4000,ofens, defens));
-			
+				else {
+					addEvent(new RunAway(tm+1000,ofens, defens));
+					battle=false;
+				}
 				if(defens.getN_alivePokemon()!=0) {
 					if(defens.getTeamMember(defens.getAP()).isDefeated()) {
 						defens.setAP(defens.nextAP());

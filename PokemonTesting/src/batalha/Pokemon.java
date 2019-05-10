@@ -116,7 +116,9 @@ public class Pokemon {
 		this.defeated = false;
 		this.moves[0] = new Ataque();
 		this.moves[0].setNome(Atk1);
-		
+		this.moves[1] = new Ataque();
+		this.moves[2] = new Ataque();
+		this.moves[3] = new Ataque();
 		this.moves[1].setNome(Atk2);
 		this.moves[2].setNome(Atk3);
 		this.moves[3].setNome(Atk4);
@@ -144,40 +146,40 @@ public class Pokemon {
 class Bulbasaur extends Pokemon {
 	public Bulbasaur() {
 		super("Bulbassauro", 220, 1, "Tackle", "VineWhip", "Razor Leaf", "Double Edge", "Grama");
-		ataque1.setDamage(40);
-		ataque2.setDamage(45);
-		ataque3.setDamage(55);
-		ataque4.setDamage(120);
+		moves[0].setDamage(40);
+		moves[1].setDamage(45);
+		moves[2].setDamage(55);
+		moves[3].setDamage(120);
 	}	
 }
 
 class Ivysaur extends Pokemon {
 	public Ivysaur() {
 		super("Ivysaur", 330, 2, "Tackle", "VineWhip", "Double Edge", "Solar Beam", "Grama");
-		ataque1.setDamage(60);
-		ataque2.setDamage(65);
-		ataque3.setDamage(140);
-		ataque4.setDamage(200);
+		moves[0].setDamage(60);
+		moves[1].setDamage(65);
+		moves[2].setDamage(140);
+		moves[3].setDamage(200);
 	}	
 }
 
 class Venusaur extends Pokemon {
 	public Venusaur() {
 		super("Venusaur", 440, 3, "Tackle", "PowerWhip", "PetalDance", "Solar Beam", "Grama");
-		ataque1.setDamage(80);
-		ataque2.setDamage(120);
-		ataque3.setDamage(140);
-		ataque4.setDamage(220);
+		moves[0].setDamage(80);
+		moves[1].setDamage(120);
+		moves[2].setDamage(140);
+		moves[3].setDamage(220);
 	}	
 }
 
 class Charmander extends Pokemon {
 	public Charmander() {
 		super("Charmander", 220, 4, "Scratch", "Ember", "Slash", "FlameThrower", "Fogo");
-		ataque1.setDamage(40);
-		ataque2.setDamage(45);
-		ataque3.setDamage(70);
-		ataque4.setDamage(120);
+		moves[0].setDamage(40);
+		moves[1].setDamage(45);
+		moves[2].setDamage(70);
+		moves[3].setDamage(120);
 	}	
 }
 
@@ -185,10 +187,10 @@ class Charmander extends Pokemon {
 class Charmeleon extends Pokemon {
 	public Charmeleon() {
 		super("Charmeleon", 330, 5, "Scratch", "Ember", "FlameThrower", "Fire Blast", "Fogo");
-		ataque1.setDamage(60);
-		ataque2.setDamage(65);
-		ataque3.setDamage(140);
-		ataque4.setDamage(200);
+		moves[0].setDamage(60);
+		moves[1].setDamage(65);
+		moves[2].setDamage(140);
+		moves[3].setDamage(200);
 	}	
 }
 
@@ -196,10 +198,10 @@ class Charmeleon extends Pokemon {
 class Charizard extends Pokemon {
 	public Charizard() {
 		super("Charizard", 420, 6, "Wing Attack", "HeatWave", "Flare Blitz", "Fire Blast", "Fogo");
-		ataque1.setDamage(90);
-		ataque2.setDamage(95);
-		ataque3.setDamage(140);
-		ataque4.setDamage(220);
+		moves[0].setDamage(90);
+		moves[1].setDamage(95);
+		moves[2].setDamage(140);
+		moves[3].setDamage(220);
 	}	
 }
 
@@ -207,60 +209,60 @@ class Charizard extends Pokemon {
 class Squirtle extends Pokemon {
 	public Squirtle() {
 		super("Squirtle", 220, 7, "Tackle", "Bubble", "WaterGun", "HydroPump", "Agua");
-		ataque1.setDamage(40);
-		ataque2.setDamage(45);
-		ataque3.setDamage(70);
-		ataque4.setDamage(120);
+		moves[0].setDamage(40);
+		moves[1].setDamage(45);
+		moves[2].setDamage(70);
+		moves[3].setDamage(120);
 	}	
 }
 
 class Wartortle extends Pokemon {
 	public Wartortle() {
 		super("Wartortle", 330, 8, "Tackle", "Bubble", "Hydro Pump", "Skull Bash", "Agua");
-		ataque1.setDamage(60);
-		ataque2.setDamage(65);
-		ataque3.setDamage(140);
-		ataque4.setDamage(200);
+		moves[0].setDamage(60);
+		moves[1].setDamage(65);
+		moves[2].setDamage(140);
+		moves[3].setDamage(200);
 	}	
 }
 
 class Blastoise extends Pokemon {
 	public Blastoise() {
 		super("Blastoise", 420, 9, "Headbutt", "Bubble Beam", "Hydro Pump", "Skull Bash", "Agua");
-		ataque1.setDamage(90);
-		ataque2.setDamage(95);
-		ataque3.setDamage(140);
-		ataque4.setDamage(220);
+		moves[0].setDamage(90);
+		moves[1].setDamage(95);
+		moves[2].setDamage(140);
+		moves[3].setDamage(220);
 	}	
 }
 
 class Butterfree extends Pokemon {
 	public Butterfree() {
 		super("Butterfree", 370, 10, "Gust", "Psy Beam", "Air Slash", "SolarBeam", "Inseto");
-		ataque1.setDamage(70);
-		ataque2.setDamage(100);
-		ataque3.setDamage(110);
-		ataque4.setDamage(240);
+		moves[0].setDamage(70);
+		moves[1].setDamage(100);
+		moves[2].setDamage(110);
+		moves[3].setDamage(240);
 	}	
 }
 
 class Pikachu extends Pokemon {
 	public Pikachu() {
 		super("Pikachu", 400, 11, "Iron Tail", "Thunder Punch", "Thunder Bolt", "Thunder", "Eletrico");
-		ataque1.setDamage(70);
-		ataque2.setDamage(100);
-		ataque3.setDamage(130);
-		ataque4.setDamage(240);
+		moves[0].setDamage(70);
+		moves[1].setDamage(100);
+		moves[2].setDamage(130);
+		moves[3].setDamage(240);
 	}	
 }
 	
 class Primeape extends Pokemon {
 	public Primeape() {
 		super("Primeape", 500, 12, "Rage", "Karate Chop", "Thrash", "Outrage", "Lutador");
-		ataque1.setDamage(40);
-		ataque2.setDamage(90);
-		ataque3.setDamage(110);
-		ataque4.setDamage(200);
+		moves[0].setDamage(40);
+		moves[1].setDamage(90);
+		moves[2].setDamage(110);
+		moves[3].setDamage(200);
 	}	
 	
 }
