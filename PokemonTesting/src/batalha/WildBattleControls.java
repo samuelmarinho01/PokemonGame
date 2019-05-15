@@ -223,9 +223,7 @@ public class WildBattleControls extends Controller{
 		
 		public void action() {
 			int standarddeffence=5;
-			// pegar o ataque do pokemon atual do Treinador atacante
-			// diminur o HP do Pokemon atual do Treinador defensor
-			// double typeAdv=0.5;
+
 			int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, TypeAdv(at.getTeamMember(at.getAP()).getType(), def.getTeamMember(def.getAP()).getType()));
 			def.getTeamMember(def.getAP()).Decreasedmg(d);
 			if(def.getTeamMember(def.getAP()).isDefeated()) {

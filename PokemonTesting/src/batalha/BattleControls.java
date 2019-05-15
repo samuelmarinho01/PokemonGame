@@ -51,7 +51,7 @@ public class BattleControls extends Controller  {
 		
 		public String description() { // a verificar
 			if(nextPokemon>=0){
-				return ofens.getName() + " trocou seu Pokemon\n"+ofens.getTeamMember(ofens.getAP()).getNome()+" entrou na batalha";
+				return defens.getName() + " trocou seu Pokemon\n"+ofens.getTeamMember(ofens.getAP()).getNome()+" entrou na batalha";
 		
 		}
 			return null;
@@ -91,11 +91,15 @@ public class BattleControls extends Controller  {
 		
 		public void action() {
 			int standarddeffence=5;
-			// pegar o ataque do pokemon atual do Treinador atacante
-			// diminur o HP do Pokemon atual do Treinador defensor
-			// double typeAdv=0.5;
+			if (!(at.getTeamMember(at.getAP()).isDefeated())) {
 			int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, TypeAdv(at.getTeamMember(at.getAP()).getType(), def.getTeamMember(def.getAP()).getType()));
 			def.getTeamMember(def.getAP()).Decreasedmg(d);
+			}
+			else {
+				ofens.setAP(ofens.nextAP());
+				int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, TypeAdv(at.getTeamMember(at.getAP()).getType(), def.getTeamMember(def.getAP()).getType()));
+				def.getTeamMember(def.getAP()).Decreasedmg(d);
+			}
 			if(def.getTeamMember(def.getAP()).isDefeated()) {
 				def.setN_alivePokemon(def.getN_alivePokemon()-1);
 			}
@@ -106,7 +110,7 @@ public class BattleControls extends Controller  {
 		}
 		public String description() {
 			
-			return ofens.getName() + "'s " +  at.getTeamMember(at.getAP()).getNome()+ " usou " + at.getTeamMember(at.getAP()).moves[atk].getMove()+" !\n"+
+			return defens.getName() + "'s " +  at.getTeamMember(at.getAP()).getNome()+ " usou " + at.getTeamMember(at.getAP()).moves[atk].getMove()+" !\n"+
 					def.getTeamMember(def.getAP()).getNome() + " tem HP "+ def.getTeamMember(def.getAP()).getCurrentHP();
 		}
 	}
@@ -178,9 +182,9 @@ public class BattleControls extends Controller  {
 					addEvent(new RunAway(tm+1000,ofens, defens));
 					battle=false;
 				}
-				if(defens.getN_alivePokemon()!=0) {
-					if(defens.getTeamMember(defens.getAP()).isDefeated()) {
-						defens.setAP(defens.nextAP());
+				if(defens.getN_alivePokemon()!=0 && ofens.getN_alivePokemon()!=0) {
+					if(defens.getTeamMember(defens.getAP()).isDefeated() || ofens.getTeamMember(ofens.getAP()).isDefeated()) {
+						ofens.setAP(ofens.nextAP());
 					}
 				}
 					else 
