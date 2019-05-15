@@ -33,8 +33,14 @@ public class Selvagem {
 	else if(n==11)	
 		poke = new Bulbasaur();
 	
+	Potion spotion = new Potion("SoftCure Potion", 40);
+	Potion cpotion = new Potion("PokeNormalCure", 80);
+	Potion mcpotion = new Potion("InsaneCure", 150);
+	
+	 Item[] itemBag= {spotion,cpotion,mcpotion};
+	
 	Pokemon[] teamRed = {poke};
-	Treinador Selvag = new Treinador("Selvagem", teamRed, null,0);
+	Treinador Selvag = new Treinador("Selvagem", teamRed, itemBag,0);
 	
 	return Selvag;
 	}
