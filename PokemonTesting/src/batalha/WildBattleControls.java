@@ -54,9 +54,19 @@ public class WildBattleControls extends Controller{
 					  { ' ', ' ', ' ', ' ', ' ' , ' ', ' '}};
 	
 	public void mapa() {
-		int x=0;
-		int y=0;
-		
+
+		for(int l=0; l <= 6; l++) 
+			System.out.print("+---");
+		System.out.println("+");
+		for(int l=0; l <= 6; l++) {	
+			for(int m=0; m<=6; m++) {
+				System.out.print("| " + map[l][m] + " ");
+			}
+			System.out.println("|");
+			for(int k=0; k <= 6; k++) 
+				System.out.print("+---");
+			System.out.println("+");
+		}
 		
 		
 		
