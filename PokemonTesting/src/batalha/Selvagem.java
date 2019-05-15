@@ -7,7 +7,6 @@ public class Selvagem {
 	private int n= gerador.nextInt(13);
 	private Pokemon poke;
 	
-	
 	public Treinador wild() {
 	if(n==0) 
 		poke = new Charizard();
