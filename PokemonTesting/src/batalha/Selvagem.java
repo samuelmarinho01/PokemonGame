@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Selvagem {
 	Random gerador = new Random();
-	private int n= gerador.nextInt(13);
+	private int n= gerador.nextInt(12);
 	private Pokemon poke;
 	
 	public Treinador wild() {
