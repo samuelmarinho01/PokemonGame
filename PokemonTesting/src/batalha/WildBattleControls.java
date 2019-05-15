@@ -41,8 +41,6 @@ public class WildBattleControls extends Controller{
 	private static int k=1;
 
 	
-	
-	
 	private static boolean wbattle=true;
 	
 	private int i=0, j=0; 
