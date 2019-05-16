@@ -34,8 +34,8 @@ public class WildBattleControls extends Controller{
 
 		
 	private Treinador ofens = Ash;
-	Selvagem h = new Selvagem();
-	private Treinador defens = h.wild();
+	private static Selvagem h = new Selvagem();
+	Treinador defens = h.wild();
 	
 	
 	private static int k=1;
@@ -94,7 +94,9 @@ public class WildBattleControls extends Controller{
 						double num = Math.random();
 						if(num>0.5) {
 							wbattle=true;
-							a=num;
+							defens = h.wild();
+							
+							
 						}
 						else
 							aux='g';
@@ -115,7 +117,7 @@ public class WildBattleControls extends Controller{
 						double num = Math.random();
 						if(num>0.5) {
 							wbattle=true;
-							a=num;
+							defens=h.wild();
 						}
 						else
 							aux='g';
@@ -136,7 +138,7 @@ public class WildBattleControls extends Controller{
 						double num = Math.random();
 						if(num>0.5) {
 							wbattle=true;
-							a=num;
+							defens=h.wild();
 						}
 						else
 							aux='g';
@@ -157,7 +159,7 @@ public class WildBattleControls extends Controller{
 						double num = Math.random();
 						if(num>0.5) {
 							wbattle=true;
-							a=num;
+							defens=h.wild();
 						}
 						else
 							aux='g';
@@ -364,7 +366,7 @@ public class WildBattleControls extends Controller{
 		WildBattleControls wbc = new WildBattleControls();
 		long tm = System.currentTimeMillis();
 		
-		while(true) {
+		
 		while(WildBattleControls.wbattle == false) {
 			wbc.addEvent(wbc.new Move(tm));
 			
@@ -376,7 +378,7 @@ public class WildBattleControls extends Controller{
 			wbc.addEvent(wbc.new NovaRodada(tm));
 			wbc.run();
 		}
-		}
+		
 		
 		
 		
