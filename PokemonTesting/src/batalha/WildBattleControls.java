@@ -19,7 +19,7 @@ public class WildBattleControls extends Controller{
 	private char local = ' ';
 	private static char aux = ' ';
 	private static boolean wbattle=false;
-	public static double a;
+	
 	
 	private Pokemon[] teamRed = {But, Squi, Venu, Pika, Bul, War};
 
@@ -176,9 +176,9 @@ public class WildBattleControls extends Controller{
 		public String description() {
 			
 		if(wbattle==true)
-			return i + " " + j + " " + a+ "Pokemon Selvagem apareceu";
+			return "Pokemon Selvagem apareceu";
 		else
-			return "Treinador andou" +i + j + "\n";
+			return "Treinador andou";
 		}
 		
 	}
@@ -197,7 +197,7 @@ public class WildBattleControls extends Controller{
 		
 		public String description() { // a verificar
 			if(nextPokemon>=0){
-				return defens.getName() + " trocou seu Pokemon\n"+ofens.getTeamMember(ofens.getAP()).getNome()+" entrou na batalha";
+				return defens.getName() + " trocou seu Pokemon\n"+defens.getTeamMember(defens.getAP()).getNome()+" entrou na batalha";
 		
 		}
 			return null;
@@ -215,7 +215,7 @@ public class WildBattleControls extends Controller{
 		else if(atac == "Eletrico" && def == "Agua") return 10.0;
 		else if(atac == "Eletrico" && def == "Grama") return 1.0;
 		else if(atac == "Lutador" && def == "Inseto") return 1.0;
-		else return 1;
+		else return 5.0;
 		
 	}
 	
@@ -359,7 +359,7 @@ public class WildBattleControls extends Controller{
 
 		public String description() {
 		
-			return k +"\n";
+			return "";
 		}
 	}
 	public static void main(String[] args) throws InterruptedException {
@@ -369,9 +369,9 @@ public class WildBattleControls extends Controller{
 		
 		while(WildBattleControls.wbattle == false) {
 			wbc.addEvent(wbc.new Move(tm));
-			
-			wbc.run();
 			wbc.mapa();
+			wbc.run();
+			//wbc.mapa();
 		}
 		
 		while (WildBattleControls.wbattle == true) {

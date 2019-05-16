@@ -51,7 +51,7 @@ public class BattleControls extends Controller  {
 		
 		public String description() { // a verificar
 			if(nextPokemon>=0){
-				return defens.getName() + " trocou seu Pokemon\n"+ofens.getTeamMember(ofens.getAP()).getNome()+" entrou na batalha";
+				return defens.getName() + " trocou seu Pokemon\n"+defens.getTeamMember(defens.getAP()).getNome()+" entrou na batalha";
 		
 		}
 			return null;
@@ -127,7 +127,12 @@ public class BattleControls extends Controller  {
 			this.cure=(Potion) cure;
 		}
 		public void action() {
+			if(ofens.getTeamMember(ofens.getAP()).getCurrentHP()!=0)
 			cure.HealHP(cure, poke);
+			else {
+			ofens.setAP(ofens.nextAP());
+			cure.HealHP(cure, poke);
+			}
 		}
 	
 		public String description() {
@@ -156,7 +161,7 @@ public class BattleControls extends Controller  {
 	class NovaRodada extends Event {
 		public NovaRodada(long eventTime) {
 			super(eventTime);
-			// TODO Auto-generated constructor stub
+			
 		}
 
 
