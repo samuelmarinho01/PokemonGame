@@ -5,22 +5,21 @@ import java.util.Random;
 
 
 
+
 public class WildBattleControls extends Controller{
-	private Pokemon Chari = new Charizard();
-	private Pokemon Bla = new Blastoise();
+
 	private Pokemon Venu = new Venusaur();
 	private Pokemon Pika = new Pikachu();
-	private Pokemon Ivy = new Ivysaur();
-	private Pokemon Mander = new Charmander();
-	private Pokemon Meleon = new Charmeleon();
+
 	private Pokemon Squi = new Squirtle();
 	private Pokemon War = new Wartortle();
 	private Pokemon But = new Butterfree();
-	private Pokemon	Pri = new Primeape();
+
 	private Pokemon Bul = new Bulbasaur();
 	private char local = ' ';
 	private static char aux = ' ';
-	private static boolean battle=false;
+	private static boolean wbattle=false;
+	public static double a;
 	
 	private Pokemon[] teamRed = {But, Squi, Venu, Pika, Bul, War};
 
@@ -38,14 +37,14 @@ public class WildBattleControls extends Controller{
 	Selvagem h = new Selvagem();
 	private Treinador defens = h.wild();
 	
+	
 	private static int k=1;
 
 	
-	private static boolean wbattle=true;
 	
 	private int i=0, j=0; 
 	private char[][] map = {
-					{ 'T', ' ', ' ', ' ', ' ' , ' ', ' '}, 
+					  { 'T', ' ', ' ', ' ', ' ' , ' ', ' '}, 
 					  { ' ', 'g', 'g', ' ', 'g' , 'g', ' '},
 					  { ' ', 'g', 'g', ' ', 'g' , 'g', ' '},			
 					  { ' ', ' ', ' ', ' ', ' ' , ' ', ' '},
@@ -87,27 +86,7 @@ public class WildBattleControls extends Controller{
 			
 			
 			if(n == 0) { 
-				if(j > 0){
-					local=aux;
-					map[i][j] = local;
-					j-= 1;
-					if(map[i][j]=='g') {
-						double num = Math.random();
-						if(num>0.5) {
-							wbattle=true;
-						}
-						else
-							aux='g';
-					}
-					else {
-						map[i][j] = 'T';
-						aux=' ';
-					}
-					
-				}
-			}
-			if(n == 1) {
-				if(i > 0) {
+				if(i > 0){
 					local=aux;
 					map[i][j] = local;
 					i-= 1;
@@ -115,39 +94,41 @@ public class WildBattleControls extends Controller{
 						double num = Math.random();
 						if(num>0.5) {
 							wbattle=true;
+							a=num;
 						}
 						else
 							aux='g';
 					}
 					else {
-						map[i][j] = 'T';
+						
 						aux=' ';
 					}
-					
+					map[i][j] = 'T';
 				}
 			}
-			if(n == 2) {
-				if(j<6){
+			if(n == 1) {
+				if(j > 0) {
 					local=aux;
 					map[i][j] = local;
-					j+= 1;
+					j-= 1;
 					if(map[i][j]=='g') {
 						double num = Math.random();
 						if(num>0.5) {
 							wbattle=true;
+							a=num;
 						}
 						else
 							aux='g';
 					}
 					else {
-						map[i][j] = 'T';
+						
 						aux=' ';
 					}
-					
+					map[i][j] = 'T';
 				}
 			}
-			if(n == 3) {
-				if(i < 6){
+			if(n == 2) {
+				if(i<6){
 					local=aux;
 					map[i][j] = local;
 					i+= 1;
@@ -155,25 +136,47 @@ public class WildBattleControls extends Controller{
 						double num = Math.random();
 						if(num>0.5) {
 							wbattle=true;
+							a=num;
 						}
 						else
 							aux='g';
 					}
 					else {
-						map[i][j] = 'T';
+						
 						aux=' ';
 					}
-					
+					map[i][j] = 'T';
+				}
+			}
+			if(n == 3) {
+				if(j < 6){
+					local=aux;
+					map[i][j] = local; //(1,0)
+					j+= 1; //(1,1)
+					if(map[i][j]=='g') {
+						double num = Math.random();
+						if(num>0.5) {
+							wbattle=true;
+							a=num;
+						}
+						else
+							aux='g';
+					}
+					else {
+						
+						aux=' ';
+					}
+					map[i][j] = 'T';
 				}
 			}
 		}
 
 		public String description() {
 			
-		if(battle=true)
-			return "Pokemon Selvagem apareceu";
+		if(wbattle==true)
+			return i + " " + j + " " + a+ "Pokemon Selvagem apareceu";
 		else
-			return "";
+			return "Treinador andou" +i + j + "\n";
 		}
 		
 	}
@@ -192,7 +195,7 @@ public class WildBattleControls extends Controller{
 		
 		public String description() { // a verificar
 			if(nextPokemon>=0){
-				return ofens.getName() + " trocou seu Pokemon\n"+ofens.getTeamMember(ofens.getAP()).getNome()+" entrou na batalha";
+				return defens.getName() + " trocou seu Pokemon\n"+ofens.getTeamMember(ofens.getAP()).getNome()+" entrou na batalha";
 		
 		}
 			return null;
@@ -231,11 +234,25 @@ public class WildBattleControls extends Controller{
 		
 		public void action() {
 			int standarddeffence=5;
-
+			if (!(at.getTeamMember(at.getAP()).isDefeated())) {
 			int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, TypeAdv(at.getTeamMember(at.getAP()).getType(), def.getTeamMember(def.getAP()).getType()));
 			def.getTeamMember(def.getAP()).Decreasedmg(d);
+			}
+			else {
+				if(k%2==0) {
+				ofens.setAP(ofens.nextAP());
+				int d= (int) at.getTeamMember(at.getAP()).moves[atk].DamageCalculate(at.getTeamMember(at.getAP()).moves[atk].getDamage(), standarddeffence, TypeAdv(at.getTeamMember(at.getAP()).getType(), def.getTeamMember(def.getAP()).getType()));
+				def.getTeamMember(def.getAP()).Decreasedmg(d);
+				}
+				else
+					wbattle=false;
+			}
 			if(def.getTeamMember(def.getAP()).isDefeated()) {
+				
 				def.setN_alivePokemon(def.getN_alivePokemon()-1);
+				/*if(def.getN_alivePokemon()==0) {
+					wbattle=false;
+				}*/
 			}
 			
 		
@@ -243,11 +260,13 @@ public class WildBattleControls extends Controller{
 			
 		}
 		public String description() {
-			
-			return ofens.getName() + "'s " +  at.getTeamMember(at.getAP()).getNome()+ " usou " + at.getTeamMember(at.getAP()).moves[atk].getMove()+" !\n"+
+			if(wbattle==true)
+			return defens.getName() + "'s " +  at.getTeamMember(at.getAP()).getNome()+ " usou " + at.getTeamMember(at.getAP()).moves[atk].getMove()+" !\n"+
 					def.getTeamMember(def.getAP()).getNome() + " tem HP "+ def.getTeamMember(def.getAP()).getCurrentHP();
+			return ofens.getName() + " LOST! \n" + defens.getName() + " WON!\n";
 		}
 	}
+	
 	
 	
 	
@@ -302,58 +321,62 @@ public class WildBattleControls extends Controller{
 				n=0.7;
 			else
 				n = Math.random();
-				if (n < 0.80){
-					
-					addEvent(new PokeAtack(tm+1000,ofens, defens));
-				}
-				else if (n < 0.85) 
-					addEvent(new TrocarPokemon(tm+1000,ofens));
+			if (n < 0.80){
 				
-				else if (n < 0.95) {
-					if(ofens.getNintens()!=0)	{			
-					addEvent(new HealPokemon(tm+1000,ofens.getTeamMember(ofens.getAP()),ofens.getItem(3- ofens.getNintens())));
-					ofens.setNintens(ofens.getNintens()-1);
-					}
+				addEvent(new PokeAtack(tm+1000,ofens, defens));
+			}
+			else if (n < 0.85)
+				addEvent(new TrocarPokemon(tm+1000,ofens));
+			else if (n < 0.95) {
+				if(ofens.getNintens()!=0)	{			
+				addEvent(new HealPokemon(tm+1000,ofens.getTeamMember(ofens.getAP()),ofens.getItem(3- ofens.getNintens())));
+				ofens.setNintens(ofens.getNintens()-1);
 				}
-				else {
-					addEvent(new RunAway(tm+1000,ofens, defens));
-					battle=false;
+			}
+			else {
+				addEvent(new RunAway(tm+1000,ofens, defens));
+				wbattle=false;
+			}
+			if(defens.getN_alivePokemon()!=0 && ofens.getN_alivePokemon()!=0) {
+				if(defens.getTeamMember(defens.getAP()).isDefeated() || ofens.getTeamMember(ofens.getAP()).isDefeated()) {
+					ofens.setAP(ofens.nextAP());
 				}
-				if(defens.getN_alivePokemon()!=0) {
-					if(defens.getTeamMember(defens.getAP()).isDefeated()) {
-						defens.setAP(defens.nextAP());
-					}
-				}
-					else 
-						battle=false;
-				if(battle) {
-					Treinador aux = ofens;
-					ofens = defens;
-					defens = aux;
+			}
+				else 
+					wbattle=false;
+			if(wbattle) {
+				Treinador aux = ofens;
+				ofens = defens;
+				defens = aux;
 					k+=1;
 				}
+			else
+				k=1;
 
 		}
 
 		public String description() {
 		
-			return "";
+			return k +"\n";
 		}
 	}
 	public static void main(String[] args) throws InterruptedException {
 		WildBattleControls wbc = new WildBattleControls();
 		long tm = System.currentTimeMillis();
+		
+		while(true) {
 		while(WildBattleControls.wbattle == false) {
 			wbc.addEvent(wbc.new Move(tm));
-			wbc.mapa();
-			wbc.run();			
 			
+			wbc.run();
+			wbc.mapa();
 		}
+		
 		while (WildBattleControls.wbattle == true) {
 			wbc.addEvent(wbc.new NovaRodada(tm));
 			wbc.run();
 		}
-		
+		}
 		
 		
 		

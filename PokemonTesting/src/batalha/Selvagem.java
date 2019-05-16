@@ -39,9 +39,9 @@ public class Selvagem {
 	
 	 Item[] itemBag= {spotion,cpotion,mcpotion};
 	
-	Pokemon[] teamRed = {poke};
-	Treinador Selvag = new Treinador("Selvagem", teamRed, itemBag,0);
-	
+	Pokemon[] teamYellow = {poke};
+	Treinador Selvag = new Treinador("Selvagem", teamYellow, itemBag,0);
+	Selvag.setN_alivePokemon(1);
 	return Selvag;
 	}
 }
