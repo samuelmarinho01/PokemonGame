@@ -8,7 +8,8 @@ public class Selvagem {
 	private Pokemon poke;
 	
 	public Treinador wild() {
-	if(n==0) 
+	
+		if(n==0) 
 		poke = new Charizard();
 	else if(n==1)
 		poke = new Blastoise();

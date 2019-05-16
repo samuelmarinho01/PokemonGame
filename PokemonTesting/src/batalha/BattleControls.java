@@ -149,6 +149,7 @@ public class BattleControls extends Controller  {
 			this.T1 = t1;
 			this.T2 = t2;
 		}
+		
 		public void action() {
 			T1.setDefeated(true);
 			T1.setFighting(false);

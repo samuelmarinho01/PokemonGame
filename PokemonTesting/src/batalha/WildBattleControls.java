@@ -366,7 +366,6 @@ public class WildBattleControls extends Controller{
 		WildBattleControls wbc = new WildBattleControls();
 		long tm = System.currentTimeMillis();
 		
-		
 		while(WildBattleControls.wbattle == false) {
 			wbc.addEvent(wbc.new Move(tm));
 			wbc.mapa();
